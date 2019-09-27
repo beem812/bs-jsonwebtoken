@@ -11,7 +11,7 @@ The package is in an extremely early state however there's really only 3 functio
 open Jwt;
 
 // emptyOptions is provided to allow you to set only the options you care about
-let options = Some({ ...emptyOptions, algorithm: HS256, notBefore: "2 days"});
+let signingOptions = Some({ ...emptyOptions, algorithm: HS256, notBefore: "2 days"});
 
 // allows for you to provide a string, buffer, jsonewebtoken secret object 
 let secret = `string("secret");
