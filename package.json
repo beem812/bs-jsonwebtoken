@@ -1,6 +1,7 @@
 {
-  "name": "bs-jsonwebtoken",
+  "name": "@beem812/bs-jsonwebtoken",
   "version": "0.1.0",
+  "description": "Bucklescirpt bindings for the Jsonwebtoken npm package",
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
@@ -13,7 +14,10 @@
     "JsonWebToken"
   ],
   "author": "James Beem",
-  "license": "GNU LESSER GENERAL PUBLIC LICENSE Version 3",
+  "license": "LGPL-3.0-or-later",
+  "homepage": "https://github.com/beem812/bs-jsonwebtoken#readme",
+  "repository": "https://github.com/beem812/bs-jsonwebtoken",
+  "bugs": "https://github.com/beem812/bs-jsonwebtoken/issues",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.9",
     "bs-platform": "^5.0.6"
