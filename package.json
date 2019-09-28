@@ -16,8 +16,13 @@
   "author": "James Beem",
   "license": "LGPL-3.0-or-later",
   "homepage": "https://github.com/beem812/bs-jsonwebtoken#readme",
-  "repository": "https://github.com/beem812/bs-jsonwebtoken",
-  "bugs": "https://github.com/beem812/bs-jsonwebtoken/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beem812/bs-jsonwebtoken.git"
+  },
+  "bugs": {
+    "url": "https://github.com/beem812/bs-jsonwebtoken/issues"
+  },
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.9",
     "bs-platform": "^5.0.6"
@@ -27,5 +32,8 @@
     "bs-json": "^1.0.1",
     "bs-node": "github:reasonml-community/bs-node",
     "jsonwebtoken": "^8.5.1"
+  },
+  "directories": {
+    "lib": "lib"
   }
 }

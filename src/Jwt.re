@@ -22,8 +22,6 @@ type secretObject = {
   passphrase: string,
 };
 
-
-
 [@bs.module "jsonwebtoken"] external signWithOptions : (
   [@bs.unwrap][`json(Js.Json.t) | `buffer(Node_buffer.t)], 
   [@bs.unwrap][`string(string) | `buffer(Node_buffer.t) | `secret(secretObject)], 
