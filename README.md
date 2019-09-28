@@ -43,3 +43,17 @@ let payloadFromVerify = Jwt.verify(jwtToken, secret)
 let payloadFromDecode = Jwt.decode(jwtToekn)
 
 ```
+
+## Installation
+
+```sh
+npm i @beem812/bs-jsonwebtoken
+```
+
+Then add `@beem812/bs-jsonwebtokent` to `bs-dependencies` in your `bsconfig.json`:
+```js
+{
+  ...
+  "bs-dependencies": ["@beem812/bs-jsonwebtoken"]
+}
+```
