@@ -8,7 +8,7 @@ The package is in an extremely early state however there's really only 3 functio
 ## Example
 
 ```reason
-open Jwt;
+open JsonWebToken;
 open Json_encode;
 
 
@@ -37,10 +37,10 @@ let jwtToken = sign(~secret, ~options, payload);
 // if your token uses a public/private key pair this will also take the public key
 // results from both verify and decode require you to json decode,
 // again @glennsl/bs-json can handle this.
-let payloadFromVerify = Jwt.verify(jwtToken, secret)
+let payloadFromVerify = verify(jwtToken, secret)
 
 // Decod the token if already verified.
-let payloadFromDecode = Jwt.decode(jwtToekn)
+let payloadFromDecode = decode(jwtToekn)
 
 ```
 
