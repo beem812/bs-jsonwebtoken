@@ -1,6 +1,6 @@
 open Jest;
 open ExpectJs;
-open Jwt;
+open JsonWebToken;
 open Json_encode;
 
 type testPayload = {
@@ -24,13 +24,13 @@ describe("sign function", () => {
   });
 
   test("should produce a token that can be verified", () => {
-    Js.log(Jwt.verify(result, secret));
-    expect(Jwt.verify(result, secret))
+    Js.log(JsonWebToken.verify(result, secret));
+    expect(JsonWebToken.verify(result, secret))
     |> toBeTruthy
   });
 
   test("should decode a js object with foo, nbf, and iat properties", () => {
-    expect(Jwt.decode(result))
+    expect(JsonWebToken.decode(result))
     |> toContainProperties([|"foo", "nbf", "iat"|])
   })
 })
