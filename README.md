@@ -9,12 +9,22 @@ The package is in an extremely early state however there's really only 3 functio
 
 ```reason
 open Jwt;
+open Json_encode;
+
 
 // emptyOptions is provided to allow you to set only the options you care about
 let signingOptions = Some({ ...emptyOptions, algorithm: HS256, notBefore: "2 days"});
 
 // allows for you to provide a string, buffer, jsonewebtoken secret object 
 let secret = `string("secret");
+
+type testPayload = {
+  foo: string
+};
+
+let encodeTestPayload = (payload: testPayload) => {
+  object_([("foo", string(payload.foo))]);
+};
 
 // it's expected that you will json encode your payload before passing it in to sign
 // I recommend using @glennsl/bs-json to do your json encoding as I have here
