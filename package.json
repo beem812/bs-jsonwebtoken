@@ -1,6 +1,6 @@
 {
   "name": "@beem812/bs-jsonwebtoken",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Bucklescirpt bindings for the Jsonwebtoken npm package",
   "scripts": {
     "build": "bsb -make-world",
