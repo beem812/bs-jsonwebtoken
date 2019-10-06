@@ -1,36 +1,55 @@
 open Jest;
 open ExpectJs;
 open JsonWebToken;
-open Json_encode;
 
 type testPayload = {
   foo: string
 };
 
-let encodeTestPayload = (payload: testPayload) => {
-  object_([("foo", string(payload.foo))]);
+type decodedPayload = {
+  foo: string,
+  iat: float,
 };
 
-describe("sign function", () => {
-  let options = Some({ ...emptyOptions, algorithm: HS256, notBefore: "2 days"});
+let encodeTestPayload = (payload: testPayload) => {
+  Json_encode.(
+    object_([("foo", string(payload.foo))])
+  );
+};
+
+let decodeTestPayload = (payload: Js.Json.t) => {
+  Json_decode.{
+    foo: payload |> field("foo", string),
+    iat: payload |> field("iat", float),
+  };
+};
+
+describe("JsonWebToken", () => {
+  let options = Some({ ...emptyOptions, algorithm: HS256 });
   let secret = `string("secret");
   let testPayload = { foo: "bar"};
   let payload = `json(encodeTestPayload(testPayload));
   let result = sign(~secret, ~options, payload);
 
-  test("should produce a string value", () => {
-    expect(result)
-    |> toBeTruthy
-  });
+  describe("sign function", () => {
+    test("should produce a string value", () => {
+      expect(result)
+      |> toBeTruthy
+    });
 
-  test("should produce a token that can be verified", () => {
-    Js.log(JsonWebToken.verify(result, secret));
-    expect(JsonWebToken.verify(result, secret))
-    |> toBeTruthy
-  });
-
-  test("should decode a js object with foo, nbf, and iat properties", () => {
-    expect(JsonWebToken.decode(result))
-    |> toContainProperties([|"foo", "nbf", "iat"|])
+    test("should produce a token that can be verified", () => {
+      expect(JsonWebToken.verify(result, secret))
+      |> toBeTruthy
+    });
   })
-})
+  
+  describe("decode function", () => {
+    test("should return a Js.Json.t with property foo on it", () => {
+        JsonWebToken.decode(result)
+        |> decodeTestPayload
+        |> (x) => x.foo
+        |> expect
+        |> toEqual("bar")
+    });
+  });
+});

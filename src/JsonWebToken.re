@@ -35,11 +35,11 @@ type secretObject = {
 
 [@bs.module "jsonwebtoken"] external decode : (
   string
-) => Js.t('a) = "decode"
+) => Js.Json.t = "decode"
 
 [@bs.module "jsonwebtoken"] external verify : (
   string, [@bs.unwrap][`string(string) | `buffer(Node_buffer.t) | `secret(secretObject)]
-) => string = "decode"
+) => Js.Json.t = "verify"
 
 type secret = [
   | `string(string) 
