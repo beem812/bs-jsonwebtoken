@@ -38,18 +38,38 @@ describe("JsonWebToken", () => {
     });
 
     test("should produce a token that can be verified", () => {
-      expect(JsonWebToken.verify(result, secret))
+      JsonWebToken.verify(result, secret)
+      |> Belt.Result.isOk
+      |> expect
       |> toBeTruthy
     });
   })
   
   describe("decode function", () => {
     test("should return a Js.Json.t with property foo on it", () => {
-        JsonWebToken.decode(result)
-        |> decodeTestPayload
-        |> (x) => x.foo
-        |> expect
-        |> toEqual("bar")
+      JsonWebToken.decode(result)
+      |> decodeTestPayload
+      |> (x) => x.foo
+      |> expect
+      |> toEqual("bar")
+    });
+  });
+
+  describe("verify function", () => {
+    test("should return a Result.Ok(Js.Json.t) with property foo on it", () => {
+      JsonWebToken.verify(result, secret)
+      -> Belt.Result.getWithDefault(Js.Json.string("bad result"))
+      |> decodeTestPayload
+      |> (x) => x.foo
+      |> expect
+      |> toEqual("bar")
+    });
+
+    test("should return an error result when verification fails", () => {
+      JsonWebToken.verify(result, `string("bad secret"))
+      |> Belt.Result.isError
+      |> expect
+      |> toBeTruthy
     });
   });
 });
