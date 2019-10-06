@@ -37,7 +37,7 @@ type secretObject = {
   string
 ) => Js.Json.t = "decode"
 
-[@bs.module "jsonwebtoken"] external verify : (
+[@bs.module "jsonwebtoken"] external _verify : (
   string, [@bs.unwrap][`string(string) | `buffer(Node_buffer.t) | `secret(secretObject)]
 ) => Js.Json.t = "verify"
 
@@ -112,5 +112,15 @@ let sign = (~secret: secret, ~options: option(signOptions), payload: [`json(Js.J
   switch(options) {
     | Some(option) => signWithOptions(payload, secret, encodeSignOptions(option))
     | None => signWithoutOptions(payload, secret);
+  }
+};
+
+let verify = (token: string, secret: secret): Belt.Result.t(Js.Json.t, string) => {
+  try(Belt.Result.Ok(_verify(token, secret))){
+    | Js.Exn.Error(e) => 
+      switch(Js.Exn.message(e)) {
+        | Some(message) => Belt.Result.Error(message)
+        | None          => Belt.Result.Error("An unknown error occured") 
+      }
   }
 };
