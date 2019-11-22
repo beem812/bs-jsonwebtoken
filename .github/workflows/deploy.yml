@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         registry-url: https://npm.pkg.github.com/
-        scope: 'beem812'
+        scope: '@beem812'
         node-version: ${{ matrix.node-version }}
     - name: Set env
       run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
@@ -35,7 +35,7 @@ jobs:
         npm version $RELEASE_VERSION
         npm publish --access=public
       env:
-        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
         CI: true
     - name: Push changes
       uses: ad-m/github-push-action@master
