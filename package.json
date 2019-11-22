@@ -6,8 +6,7 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
-    "test": "jest",
-    "postversion": "git push origin HEAD:master"
+    "test": "jest"
   },
   "keywords": [
     "BuckleScript",
