@@ -34,3 +34,7 @@ jobs:
         npm publish --access=public
       env:
         CI: true
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
