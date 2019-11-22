@@ -20,12 +20,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Set env
+      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:9})
     - name: npm install, build, and test
       run: |
         npm ci
         npm run build --if-present
         npm test
-        npm version from-git --allow-same-version
+        npm version $RELEASE_VERSION
         npm publish --access=public
       env:
         CI: true
