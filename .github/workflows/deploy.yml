@@ -22,6 +22,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Set env
       run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+    - name: Set git user
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
     - name: npm install, build, and test
       run: |
         echo $RELEASE_VERSION
