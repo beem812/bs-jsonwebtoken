@@ -35,7 +35,7 @@ jobs:
         npm version $RELEASE_VERSION
         npm publish 
       env:
-        NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         CI: true
     - name: Push changes
       uses: ad-m/github-push-action@master
