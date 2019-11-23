@@ -18,7 +18,7 @@
   "homepage": "https://github.com/beem812/bs-jsonwebtoken#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beem812/bs-jsonwebtoken.git"
+    "url": "git://github.com/beem812/bs-jsonwebtoken.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
